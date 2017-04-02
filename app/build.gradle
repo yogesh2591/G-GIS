@@ -30,4 +30,5 @@ dependencies {
     compile 'com.android.support:design:25.1.1'
     compile 'com.android.support:support-v4:25.1.1'
     compile files('libs/cordova-3.4.0.jar')
+    compile 'com.github.clans:fab:1.6.4'
 }

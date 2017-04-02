@@ -3,13 +3,13 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/menu_add_server"
-            android:icon="@drawable/ic_add_server"
-            android:title="Add Server" />
-        <item
             android:id="@+id/menu_update_aoi"
             android:icon="@drawable/ic_select_aoi"
             android:title="Update AOI" />
+        <item
+            android:id="@+id/menu_sync"
+            android:icon="@drawable/ic_sync"
+            android:title="Sync" />
     </group>
 
     <item android:title="Layers">
