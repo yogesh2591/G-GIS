@@ -28,7 +28,7 @@ public class AddProjectActivity extends AppCompatActivity {
                 if (project_et.getText().toString().equals("")) {
                     Toast.makeText(getApplicationContext(), "Please Enter Project name", Toast.LENGTH_LONG).show();
                 } else {
-                    Intent add_server = new Intent(AddProjectActivity.this, MainActivity.class);
+                    Intent add_server = new Intent(AddProjectActivity.this, AddServerActivty.class);
                     add_server.putExtra("project_name", project_et.getText().toString());
                     startActivity(add_server);
                 }
