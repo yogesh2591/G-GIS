@@ -1,4 +1,4 @@
-package com.kadam.yogesh.g_gis.Activity;
+package com.kadam.yogesh.g_gis.activity;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

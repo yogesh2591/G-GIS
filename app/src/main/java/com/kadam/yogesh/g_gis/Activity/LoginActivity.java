@@ -1,4 +1,4 @@
-package com.kadam.yogesh.g_gis.Activity;
+package com.kadam.yogesh.g_gis.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
