@@ -27,7 +27,7 @@ import java.util.concurrent.ExecutorService;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, CordovaInterface {
-    public static final String mainUrl = "file:///android_asset/www/main.html";
+    public static final String mainUrl = "file:///android_asset/www/aoi.html";
     CordovaWebView cordovaWebView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

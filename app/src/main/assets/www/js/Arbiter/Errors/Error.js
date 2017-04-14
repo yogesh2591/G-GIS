@@ -1,4 +1,0 @@
-(function(){
-	
-	Arbiter.Error = {};
-})();
