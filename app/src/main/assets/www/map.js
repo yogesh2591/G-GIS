@@ -27,5 +27,5 @@ var olmap = new ol.Map({
 			var long = 72.8777;
 			console.log("Long: " + long + " Lat: " + lat);
 			olmap.getView().setCenter(ol.proj.transform([long, lat], 'EPSG:4326', 'EPSG:3857'));
-			olmap.getView.setZoom(23);
+			olmap.getView().setZoom(20);
 		}
