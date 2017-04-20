@@ -1,4 +1,4 @@
-package com.kadam.yogesh.g_gis.activity;
+package com.kadam.yogesh.g_gis.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
 
+import com.kadam.yogesh.g_gis.Helpers.GPSTracker;
 import com.kadam.yogesh.g_gis.R;
 
 import org.apache.cordova.Config;
@@ -36,12 +37,14 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        final GPSTracker gps = new GPSTracker(this);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cordovaWebView.loadUrl("javascript:zoomtoGPS()");
+                double latitude = gps.getLatitude();
+                double longitude = gps.getLongitude();
+                cordovaWebView.loadUrl("javascript:zoomtoGPS("+latitude+" ,"+longitude+")");
             }
         });
 

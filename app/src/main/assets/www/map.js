@@ -22,10 +22,15 @@ var olmap = new ol.Map({
 			return olmap.getView().calculateExtent(olmap.getSize());
 		}
 		
-		var zoomtoGPS = function(){
-			var lat = 19.0760;
-			var long = 72.8777;
-			console.log("Long: " + long + " Lat: " + lat);
-			olmap.getView().setCenter(ol.proj.transform([long, lat], 'EPSG:4326', 'EPSG:3857'));
+		var zoomtoGPS = function(lat,lang){
+//			var lat = 19.0760;
+//			var long = 72.8777;
+			console.log("Long: " + lang + " Lat: " + lat);
+			olmap.getView().setCenter(ol.proj.transform([lang, lat], 'EPSG:4326', 'EPSG:3857'));
 			olmap.getView().setZoom(20);
+
+			
+
+
+
 		}
