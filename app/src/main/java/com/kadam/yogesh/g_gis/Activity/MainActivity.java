@@ -38,15 +38,15 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         final GPSTracker gps = new GPSTracker(this);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                double latitude = gps.getLatitude();
-                double longitude = gps.getLongitude();
-                cordovaWebView.loadUrl("javascript:zoomtoGPS("+latitude+" ,"+longitude+")");
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                double latitude = gps.getLatitude();
+//                double longitude = gps.getLongitude();
+//                cordovaWebView.loadUrl("javascript:zoomtoGPS("+latitude+" ,"+longitude+")");
+//            }
+//        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
