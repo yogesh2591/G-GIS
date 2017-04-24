@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,7 +14,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.webkit.WebView;
 
 import com.kadam.yogesh.g_gis.Helpers.GPSTracker;
 import com.kadam.yogesh.g_gis.R;
@@ -30,6 +29,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, CordovaInterface {
     public static final String mainUrl = "file:///android_asset/www/aoi.html";
     CordovaWebView cordovaWebView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Config.init(this);
@@ -39,12 +39,15 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
         final GPSTracker gps = new GPSTracker(this);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 double latitude = gps.getLatitude();
                 double longitude = gps.getLongitude();
+                Log.i("latLong", latitude + " : " + longitude);
                 cordovaWebView.loadUrl("javascript:zoomtoGPS("+latitude+" ,"+longitude+")");
+                //
             }
         });
 
@@ -127,4 +130,5 @@ public class MainActivity extends AppCompatActivity
     public ExecutorService getThreadPool() {
         return null;
     }
+
 }
