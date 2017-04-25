@@ -23,14 +23,20 @@ var olmap = new ol.Map({
 		}
 		
 		var zoomtoGPS = function(lat,lang){
-//			var lat = 19.0760;
-//			var long = 72.8777;
-			console.log("Long: " + lang + " Lat: " + lat);
 			olmap.getView().setCenter(ol.proj.transform([lang, lat], 'EPSG:4326', 'EPSG:3857'));
 			olmap.getView().setZoom(20);
+		}
 
-			
+		var zoomIn = function(){
 
+		    olmap.getView().setZoom(olmap.getView().getZoom() + 1 );
+		}
 
+		var zoomOut = function(){
+		olmap.getView().setZoom(olmap.getView().getZoom() -  1 );
+		}
 
+		var resetNorth =function()
+		{
+		    olmap.getView().setRotation(0);
 		}
