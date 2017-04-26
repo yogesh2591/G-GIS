@@ -2,7 +2,14 @@ package com.kadam.yogesh.g_gis.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v7.widget.PopupMenu;
+import android.view.ActionProvider;
+import android.view.ContextMenu;
+import android.view.Gravity;
+import android.view.MenuInflater;
+import android.view.SubMenu;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -32,6 +39,7 @@ public class MainActivity extends AppCompatActivity
     CordovaWebView cordovaWebView;
     FloatingActionMenu menu_fame;
     FloatingActionButton location_button, zoom_in_button, zoom_out_button, reset_north_button;
+    int Map_selection;
     //endregion
 
     @Override
@@ -125,7 +133,45 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        switch (id)
+        {
+            case  R.id.baseMap:
 
+                View view = getActivity().findViewById(R.id.baseMap);
+                PopupMenu map_selection_menu = new PopupMenu(MainActivity.this,view);
+                map_selection_menu.getMenuInflater().inflate(R.menu.menu_map_type, map_selection_menu.getMenu());
+                map_selection_menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        switch(item.getItemId())
+                        {
+                            case R.id.menu_hybrid_map:
+                                cordovaWebView.loadUrl("javascript:setMapLayerVisibility(0)");
+                                Map_selection = 0;
+                                item.setChecked(true);
+                                return true;
+                            case R.id.menu_standard_map:
+                                cordovaWebView.loadUrl("javascript:setMapLayerVisibility(1)");
+                                item.setChecked(true);
+                                Map_selection = 11;
+                                return true;
+                            case R.id.menu_terrain_map:
+                                cordovaWebView.loadUrl("javascript:setMapLayerVisibility(2)");
+                                item.setChecked(true);
+                                Map_selection = 2;
+                                return true;
+                        }
+                        return true;
+                    }
+                });
+                map_selection_menu.show();
+                return true;
+            case  R.id.About:
+
+                break;
+
+
+        }
 
         return super.onOptionsItemSelected(item);
     }
