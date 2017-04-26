@@ -34,7 +34,9 @@ var olmap = new ol.Map({
 		  view: new ol.View({
 			center: ol.proj.transform(
 				[72.821807,18.974611], 'EPSG:4326', 'EPSG:3857'),
-			zoom: 5
+			zoom: 5,
+			minZoom : 2 ,
+			maxZoom : 5
 		  })
 		});
 		

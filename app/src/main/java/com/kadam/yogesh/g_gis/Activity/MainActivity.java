@@ -133,40 +133,32 @@ public class MainActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        switch (id)
-        {
-            case  R.id.baseMap:
+        switch (id) {
+            case R.id.baseMap:
 
                 View view = getActivity().findViewById(R.id.baseMap);
-                PopupMenu map_selection_menu = new PopupMenu(MainActivity.this,view);
+                final PopupMenu map_selection_menu = new PopupMenu(MainActivity.this, view);
                 map_selection_menu.getMenuInflater().inflate(R.menu.menu_map_type, map_selection_menu.getMenu());
                 map_selection_menu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                     @Override
                     public boolean onMenuItemClick(MenuItem item) {
-                        switch(item.getItemId())
-                        {
+                        switch (item.getItemId()) {
                             case R.id.menu_hybrid_map:
                                 cordovaWebView.loadUrl("javascript:setMapLayerVisibility(0)");
-                                Map_selection = 0;
-                                item.setChecked(true);
-                                return true;
+                                break;
                             case R.id.menu_standard_map:
                                 cordovaWebView.loadUrl("javascript:setMapLayerVisibility(1)");
-                                item.setChecked(true);
-                                Map_selection = 11;
-                                return true;
+                                break;
                             case R.id.menu_terrain_map:
                                 cordovaWebView.loadUrl("javascript:setMapLayerVisibility(2)");
-                                item.setChecked(true);
-                                Map_selection = 2;
-                                return true;
+                                break;
                         }
                         return true;
                     }
                 });
                 map_selection_menu.show();
                 return true;
-            case  R.id.About:
+            case R.id.About:
 
                 break;
 

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
+
         <item
             android:id="@+id/menu_hybrid_map"
             android:orderInCategory="1"
-            android:title="Hybrid Map" />
+            android:title="Hybrid Map"/>
         <item
             android:id="@+id/menu_standard_map"
             android:orderInCategory="2"
-            android:title="Standard Map" />
+            android:title="Standard Map"/>
         <item
             android:id="@+id/menu_terrain_map"
             android:orderInCategory="3"
-            android:title="Terrain Map" />
-    </group>
+            android:title="Terrain Map"/>
+
 </menu>
