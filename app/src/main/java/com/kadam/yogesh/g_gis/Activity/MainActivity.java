@@ -1,8 +1,11 @@
 package com.kadam.yogesh.g_gis.Activity;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v7.widget.PopupMenu;
 import android.view.ActionProvider;
@@ -73,9 +76,17 @@ public class MainActivity extends AppCompatActivity
         location_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                double latitude = gps.getLatitude();
-                double longitude = gps.getLongitude();
-                cordovaWebView.loadUrl("javascript:zoomtoGPS(" + latitude + " ," + longitude + ")");
+                final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//                if (ConnectionDetector.isInternetConnection(getApplicationContext())) {
+                if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                    buildAlertMessageNoGps();
+                } else {
+                    double latitude = gps.getLatitude();
+                    double longitude = gps.getLongitude();
+                    cordovaWebView.loadUrl("javascript:zoomtoGPS(" + latitude + " ," + longitude + ")");
+                }
+//                    }
+
             }
         });
         zoom_in_button.setOnClickListener(new View.OnClickListener() {
@@ -204,4 +215,24 @@ public class MainActivity extends AppCompatActivity
         return null;
     }
 
+    //region CHECK GPS IS AVAILABLE OR NOT
+    private void buildAlertMessageNoGps() {
+        final android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(this);
+        builder.setMessage("Your GPS seems to be disabled, do you want to enable it")
+                .setCancelable(false)
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        dialog.cancel();
+                    }
+                });
+        final android.app.AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    //endregion
 }

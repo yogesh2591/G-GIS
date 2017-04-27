@@ -35,8 +35,8 @@ var olmap = new ol.Map({
 			center: ol.proj.transform(
 				[72.821807,18.974611], 'EPSG:4326', 'EPSG:3857'),
 			zoom: 5,
-			minZoom : 2 ,
-			maxZoom : 5
+			minZoom : 4 ,
+			maxZoom : 25
 		  })
 		});
 		
@@ -46,8 +46,8 @@ var olmap = new ol.Map({
 		}
 		
 		var zoomtoGPS = function(lat,lang){
-			olmap.getView().setCenter(ol.proj.transform([lang, lat], 'EPSG:4326', 'EPSG:3857'));
-			olmap.getView().setZoom(20);
+          olmap.getView().setCenter(ol.proj.transform([lang, lat], 'EPSG:4326', 'EPSG:3857'));
+           olmap.getView().setZoom(20);
 		}
 
 		var zoomIn = function(){

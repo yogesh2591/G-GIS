@@ -48,6 +48,12 @@ public class GPSTracker implements LocationListener {
     @Override
     public void onLocationChanged(Location location) {
 
+        if (location != null) {
+            latitude = location.getLatitude();
+        }
+        if (location != null) {
+            longitude = location.getLongitude();
+        }
     }
 
     @Override
@@ -65,7 +71,7 @@ public class GPSTracker implements LocationListener {
 
     }
 
-    public Location getLocation() {
+    private Location getLocation() {
         try {
             locationManager = (LocationManager) mContext
                     .getSystemService(Context.LOCATION_SERVICE);
