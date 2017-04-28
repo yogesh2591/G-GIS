@@ -16,20 +16,25 @@ var standard_map_layer = new ol.layer.Tile({
                        					]
                        				})
                        			});
-var terrain_map_layer = new ol.layer.Tile({
-                       				source: new ol.source.OSM({
-                       					url: 'http://mt{0-3}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',
-                       					attributions: [
-                       						new ol.Attribution({ html: '� Google' }),
-                       						new ol.Attribution({ html: '<a href="https://developers.google.com/maps/terms">Terms of Use.</a>' })
-                       					]
-                       				})
-                       			});
+//var terrain_map_layer = new ol.layer.Tile({
+//                       				source: new ol.source.OSM({
+//                       					url: 'http://mt{0-3}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',
+//                       					attributions: [
+//                       						new ol.Attribution({ html: '� Google' }),
+//                       						new ol.Attribution({ html: '<a href="https://developers.google.com/maps/terms">Terms of Use.</a>' })
+//                       					]
+//                       				})
+//                       			});
+var arc_gis_layer  = new ol.layer.Tile({
+                                        source: new ol.source.TileArcGISRest({
+                                            url: "http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer"
+                                          })
+                                        });
 
 var olmap = new ol.Map({
 		  target: 'map',
 		  layers: [
-				terrain_map_layer,hybrid_map_layer,standard_map_layer
+				hybrid_map_layer,standard_map_layer,arc_gis_layer
 		  ],
 		  view: new ol.View({
 			center: ol.proj.transform(
@@ -72,17 +77,17 @@ var olmap = new ol.Map({
                 case  0 :
                     hybrid_map_layer.setVisible(true);
                     standard_map_layer.setVisible(false);
-                    terrain_map_layer.setVisible(false);
+                    arc_gis_layer.setVisible(false);
                 break;
                 case  1 :
                     hybrid_map_layer.setVisible(false);
                     standard_map_layer.setVisible(true);
-                    terrain_map_layer.setVisible(false);
+                    arc_gis_layer.setVisible(false);
                 break;
                 case  2 :
                     hybrid_map_layer.setVisible(false);
                     standard_map_layer.setVisible(false);
-                    terrain_map_layer.setVisible(true);
+                    arc_gis_layer.setVisible(true);
                 break;
             }
 		 }
