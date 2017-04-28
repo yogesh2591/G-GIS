@@ -6,5 +6,5 @@ import org.apache.cordova.CordovaPlugin;
  * Created by 27957388 on 04/28/17.
  */
 
-public class SQLlitePlugin extends CordovaPlugin {
+public class SQLitePlugin extends CordovaPlugin {
 }
