@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.shapes.Shape;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.annotation.ColorInt;
 import android.support.v7.widget.PopupMenu;
 import android.view.ActionProvider;
 import android.view.ContextMenu;
@@ -22,9 +25,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionMenu;
 import com.github.clans.fab.FloatingActionButton;
+import com.jrummyapps.android.colorpicker.ColorPickerDialog;
+import com.jrummyapps.android.colorpicker.ColorPickerDialogListener;
 import com.kadam.yogesh.g_gis.Helpers.GPSTracker;
 import com.kadam.yogesh.g_gis.R;
 
@@ -35,8 +41,8 @@ import org.apache.cordova.CordovaWebView;
 
 import java.util.concurrent.ExecutorService;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, CordovaInterface {
+public class MainActivity extends AppCompatActivity implements ColorPickerDialogListener,
+        NavigationView.OnNavigationItemSelectedListener, CordovaInterface {
     //region DECLARATION
     public static final String mainUrl = "file:///android_asset/www/aoi.html";
     CordovaWebView cordovaWebView;
@@ -44,7 +50,7 @@ public class MainActivity extends AppCompatActivity
     FloatingActionButton location_button, zoom_in_button, zoom_out_button, reset_north_button;
     int Map_selection;
     //endregion
-
+    private static final int DIALOG_ID = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Config.init(this);
@@ -170,10 +176,17 @@ public class MainActivity extends AppCompatActivity
                 map_selection_menu.show();
                 return true;
             case R.id.About:
+                ColorPickerDialog.newBuilder()
+                        .setDialogType(ColorPickerDialog.TYPE_PRESETS)
+                        .setAllowCustom(true)
+                        .setDialogTitle(R.string.layer_color)
+                        .setDialogId(DIALOG_ID)
+                        .setShowColorShades(true)
 
-                break;
-
-
+                        .setColor(Color.BLACK)
+                        .setShowAlphaSlider(true)
+                        .show(this);
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -232,6 +245,20 @@ public class MainActivity extends AppCompatActivity
                 });
         final android.app.AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    @Override
+    public void onColorSelected(int dialogId, @ColorInt int color) {
+        switch (dialogId) {
+            case DIALOG_ID:
+                Toast.makeText(MainActivity.this, "Color Selected IS  : " + Integer.toHexString(color), Toast.LENGTH_SHORT).show();
+                break;
+        }
+    }
+
+    @Override
+    public void onDialogDismissed(int dialogId) {
+
     }
 
     //endregion

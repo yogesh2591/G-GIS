@@ -12,6 +12,6 @@
         <item
             android:id="@+id/menu_terrain_map"
             android:orderInCategory="3"
-            android:title="Terrain Map"/>
+            android:title="Open Layer Map"/>
 
 </menu>

@@ -25,16 +25,19 @@ var standard_map_layer = new ol.layer.Tile({
 //                       					]
 //                       				})
 //                       			});
-var arc_gis_layer  = new ol.layer.Tile({
-                                        source: new ol.source.TileArcGISRest({
-                                            url: "http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer"
-                                          })
-                                        });
+//var arc_gis_layer  = new ol.layer.Tile({
+//                                        source: new ol.source.TileArcGISRest({
+//                                            url: "http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer"
+//                                          })
+//                                        });
+var open_layer = new ol.layer.Tile({
+            source: new ol.source.OSM()
+          })
 
 var olmap = new ol.Map({
 		  target: 'map',
 		  layers: [
-				hybrid_map_layer,standard_map_layer,arc_gis_layer
+				open_layer,hybrid_map_layer,standard_map_layer
 		  ],
 		  view: new ol.View({
 			center: ol.proj.transform(
@@ -77,17 +80,17 @@ var olmap = new ol.Map({
                 case  0 :
                     hybrid_map_layer.setVisible(true);
                     standard_map_layer.setVisible(false);
-                    arc_gis_layer.setVisible(false);
+                    open_layer.setVisible(false);
                 break;
                 case  1 :
                     hybrid_map_layer.setVisible(false);
                     standard_map_layer.setVisible(true);
-                    arc_gis_layer.setVisible(false);
+                    open_layer.setVisible(false);
                 break;
                 case  2 :
                     hybrid_map_layer.setVisible(false);
                     standard_map_layer.setVisible(false);
-                    arc_gis_layer.setVisible(true);
+                    open_layer.setVisible(true);
                 break;
             }
 		 }

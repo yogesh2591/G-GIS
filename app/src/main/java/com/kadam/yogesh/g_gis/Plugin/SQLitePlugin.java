@@ -1,5 +1,4 @@
 package com.kadam.yogesh.g_gis.Plugin;
-
 import org.apache.cordova.CordovaPlugin;
 
 /**
@@ -7,4 +6,5 @@ import org.apache.cordova.CordovaPlugin;
  */
 
 public class SQLitePlugin extends CordovaPlugin {
+
 }
