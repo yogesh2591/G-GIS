@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
                             case R.id.menu_standard_map:
                                 cordovaWebView.loadUrl("javascript:setMapLayerVisibility(1)");
                                 break;
-                            case R.id.menu_terrain_map:
+                            case R.id.menu_open_map:
                                 cordovaWebView.loadUrl("javascript:setMapLayerVisibility(2)");
                                 break;
                         }
