@@ -32,6 +32,9 @@ import com.github.clans.fab.FloatingActionButton;
 import com.jrummyapps.android.colorpicker.ColorPickerDialog;
 import com.jrummyapps.android.colorpicker.ColorPickerDialogListener;
 import com.kadam.yogesh.g_gis.Helpers.GPSTracker;
+import com.kadam.yogesh.g_gis.Map.Map;
+import com.kadam.yogesh.g_gis.Map.MapChangeHelper;
+import com.kadam.yogesh.g_gis.Plugin.GgisCordovaPlugin;
 import com.kadam.yogesh.g_gis.R;
 
 import org.apache.cordova.Config;
@@ -41,11 +44,12 @@ import org.apache.cordova.CordovaWebView;
 
 import java.util.concurrent.ExecutorService;
 
-public class MainActivity extends AppCompatActivity implements ColorPickerDialogListener,
+public class MainActivity extends AppCompatActivity implements ColorPickerDialogListener, Map.MapChangeListener, Map.CordovaMap,
         NavigationView.OnNavigationItemSelectedListener, CordovaInterface {
     //region DECLARATION
-    public static final String mainUrl = "file:///android_asset/www/aoi.html";
+
     CordovaWebView cordovaWebView;
+    private MapChangeHelper mapChangeHelper;
     FloatingActionMenu menu_fame;
     FloatingActionButton location_button, zoom_in_button, zoom_out_button, reset_north_button;
     int Map_selection;
@@ -83,35 +87,35 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
             @Override
             public void onClick(View view) {
                 final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-//                if (ConnectionDetector.isInternetConnection(getApplicationContext())) {
+                //if (ConnectionDetector.isInternetConnection(getApplicationContext())) {
                 if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                     buildAlertMessageNoGps();
                 } else {
                     double latitude = gps.getLatitude();
                     double longitude = gps.getLongitude();
-                    cordovaWebView.loadUrl("javascript:zoomtoGPS(" + latitude + " ," + longitude + ")");
+                    Map.getMap().zoomToLocation(cordovaWebView, latitude, longitude);
                 }
-//                    }
+                // }
 
             }
         });
         zoom_in_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cordovaWebView.loadUrl("javascript:zoomIn()");
+                Map.getMap().zoomIn(cordovaWebView);
             }
         });
 
         zoom_out_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cordovaWebView.loadUrl("javascript:zoomOut()");
+                Map.getMap().zoomOut(cordovaWebView);
             }
         });
         reset_north_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cordovaWebView.loadUrl("javascript:resetNorth()");
+                Map.getMap().resetToNorth(cordovaWebView);
             }
         });
         //endregion
@@ -124,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
 
         navigationView.setNavigationItemSelectedListener(this);
 
-        cordovaWebView.loadUrl(mainUrl, 5000);
+        cordovaWebView.loadUrl(GgisCordovaPlugin.mainUrl, 5000);
     }
 
     @Override
@@ -161,13 +165,13 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.menu_hybrid_map:
-                                cordovaWebView.loadUrl("javascript:setMapLayerVisibility(0)");
+                                Map.getMap().setMapLayerVisibility(cordovaWebView, 0);
                                 break;
                             case R.id.menu_standard_map:
-                                cordovaWebView.loadUrl("javascript:setMapLayerVisibility(1)");
+                                Map.getMap().setMapLayerVisibility(cordovaWebView, 1);
                                 break;
                             case R.id.menu_open_map:
-                                cordovaWebView.loadUrl("javascript:setMapLayerVisibility(2)");
+                                Map.getMap().setMapLayerVisibility(cordovaWebView, 2);
                                 break;
                         }
                         return true;
@@ -259,6 +263,16 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
     @Override
     public void onDialogDismissed(int dialogId) {
 
+    }
+
+    @Override
+    public CordovaWebView getWebView() {
+        return this.cordovaWebView;
+    }
+
+    @Override
+    public MapChangeHelper getMapChangeHelper() {
+        return this.mapChangeHelper;
     }
 
     //endregion

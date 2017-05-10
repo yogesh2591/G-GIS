@@ -10,7 +10,7 @@ import org.json.JSONException;
  */
 
 public class GgisCordovaPlugin extends CordovaPlugin {
-    private static final String TAG = "ArbiterCordova";
+    private static final String TAG = "GgisCordova";
     // private final ArbiterProject arbiterProject;
     public static final String mainUrl = "file:///android_asset/www/main.html";
     public static final String aoiUrl = "file:///android_asset/www/aoi.html";

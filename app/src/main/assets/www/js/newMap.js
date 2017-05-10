@@ -16,20 +16,6 @@ var standard_map_layer = new ol.layer.Tile({
                        					]
                        				})
                        			});
-//var terrain_map_layer = new ol.layer.Tile({
-//                       				source: new ol.source.OSM({
-//                       					url: 'http://mt{0-3}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',
-//                       					attributions: [
-//                       						new ol.Attribution({ html: '� Google' }),
-//                       						new ol.Attribution({ html: '<a href="https://developers.google.com/maps/terms">Terms of Use.</a>' })
-//                       					]
-//                       				})
-//                       			});
-//var arc_gis_layer  = new ol.layer.Tile({
-//                                        source: new ol.source.TileArcGISRest({
-//                                            url: "http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer"
-//                                          })
-//                                        });
 var open_layer = new ol.layer.Tile({
             source: new ol.source.OSM()
           })
