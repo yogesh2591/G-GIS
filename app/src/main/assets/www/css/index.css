@@ -1,0 +1,30 @@
+#map {
+      width: 100vw;
+      height: 100vh;
+    }
+	body{
+	margin :0 0 0 0 ;
+	}
+	.ol-attribution.ol-unselectable.ol-control
+	{
+	display : none;
+	}
+	.ol-zoom.ol-unselectable.ol-control
+	{
+	display : none;
+	}
+	.ol-scale-line{
+    background: #ff5722;
+    border-radius: 4px;
+    bottom: 8px;
+    left: 8px;
+    padding: 1px;
+    position: absolute;
+    }
+    .ol-scale-line-inner{
+        background: #ff5722;
+        padding: 3px;
+        border-radius : 5px;
+        border : 2px solid #eee;
+        border-top: none;
+    }

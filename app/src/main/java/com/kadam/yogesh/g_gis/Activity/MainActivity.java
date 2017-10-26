@@ -165,13 +165,13 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
                     public boolean onMenuItemClick(MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.menu_hybrid_map:
-                                Map.getMap().setMapLayerVisibility(cordovaWebView, 0);
+                                Map.getMap().setMapLayerVisibility(cordovaWebView, 2);
                                 break;
                             case R.id.menu_standard_map:
                                 Map.getMap().setMapLayerVisibility(cordovaWebView, 1);
                                 break;
                             case R.id.menu_open_map:
-                                Map.getMap().setMapLayerVisibility(cordovaWebView, 2);
+                                Map.getMap().setMapLayerVisibility(cordovaWebView, 0);
                                 break;
                         }
                         return true;
