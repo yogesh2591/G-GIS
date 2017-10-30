@@ -186,7 +186,6 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
                         .setDialogTitle(R.string.layer_color)
                         .setDialogId(DIALOG_ID)
                         .setShowColorShades(true)
-
                         .setColor(Color.BLACK)
                         .setShowAlphaSlider(true)
                         .show(this);

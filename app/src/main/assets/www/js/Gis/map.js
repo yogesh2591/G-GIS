@@ -140,7 +140,7 @@ Map = (function () {
 						}
 					});
 			}catch(err){console.log(err);}
-			},1000*60);
+			},1000*60*2);
 
 
 		},
