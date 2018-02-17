@@ -5,17 +5,10 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.shapes.Shape;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.v7.widget.PopupMenu;
-import android.view.ActionProvider;
-import android.view.ContextMenu;
-import android.view.Gravity;
-import android.view.MenuInflater;
-import android.view.SubMenu;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -55,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
     int Map_selection;
     //endregion
     private static final int DIALOG_ID = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Config.init(this);

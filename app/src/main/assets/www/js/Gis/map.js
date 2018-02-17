@@ -98,7 +98,7 @@ Map = (function () {
 				image: new ol.style.Icon(/** @type {olx.style.IconOptions} */({
 					anchor: [0.5, 46],
 					anchorXUnits: 'fraction',
-					anchorYUnits: 'pixels',
+					88anchorYUnits: 'pixels',
 					opacity:1,
 					src: 'img/location_marker.png'
 				}))
