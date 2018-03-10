@@ -1,5 +1,6 @@
 package com.kadam.yogesh.g_gis.Activity;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -9,6 +10,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.v7.widget.PopupMenu;
+import android.view.MotionEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
     //endregion
     private static final int DIALOG_ID = 0;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Config.init(this);
@@ -67,7 +70,6 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
         zoom_out_button = (FloatingActionButton) findViewById(R.id.button_zoom_out);
         reset_north_button = (FloatingActionButton) findViewById(R.id.button_reset_north);
         //endregion
-
 
         //region BUTTON CLICKE LISTNER
         menu_fame.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +91,6 @@ public class MainActivity extends AppCompatActivity implements ColorPickerDialog
                     double longitude = gps.getLongitude();
                     Map.getMap().zoomToLocation(cordovaWebView, latitude, longitude);
                 }
-                // }
 
             }
         });
